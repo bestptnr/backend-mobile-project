@@ -13,107 +13,81 @@ dbConn.connect()
 
 // อาจจะส่งเป็นสองส่วนคือ recipes กับ ตัวของส่วนผสมเข้าไปที่ตาราง recipes_ingredient ตัวอย่างข้อมุลที่ถุกเพิ่มถ้ากดเพิ่ม
 // {
-//     "recipes":{
-//         "recipe_name": "แกงมัสมั่นไก่ทอด",
-//         "detail": "“แกงมัสมั่นไก่” ถือว่าเป็นเมนูเด็ดอีกเมนูหนึ่งที่ได้รับการจัดอันดับว่าฝรั่งชอบมากที่สุด แซงหน้าต้มยำกุ้งไปแล้ว จำไว้ค่ะเสน่ห์ปลายจวักผัวรักจนตาย ดังกาพย์แห่เครื่องคาวหวานได้กล่าวไว้ 'มัสมั่นแกงแก้วตา หอมยี่หร่ารสร้อนแรง ชายใดได้กลืนแกง แรงอยากให้ใฝ่ฝันหา…",
-//         "image": "https://s359.thaibuffer.com/pagebuilder/ae403169-b697-43de-8667-e7d7ba225333.jpg",
-//         "step": "เคี่ยวพริกแกงตั้งหม้อให้ร้อนใส่กะทิลงไปเคี่ยวสักพักจนเดือดใส่พริกแกงลงไปเคี่ยวจนกะทิแตกมัน,เติมเครื่องลงไปผัดใส่หอมใหญ่หั่นลงไปผัดใส่น่องไก่ลงไปผัดคลุกให้เข้ากับน้ำแกงใส่เม็ดมะม่วงหิมพานต์ลงไปใส่มันฝรั่งลงไปผัด,เคี่ยวจนไก่นุ่มเติมหางกะทิเคี่ยวจนไก่นุ่มประมาณ45-60นาทีหมั่นคน,ปรุงรสชาติเติมน้ำตาลมะพร้าวเติมน้ำมะขามเปียกเติมน้ำปลา และเกลือเคี่ยวต่อให้เข้ากันดีเป็นอันเสร็จพิธี",
-//         "type_id": 2
-//     },
+//     "data": [
+//         {
+//             "recipe_name": "แกงเนื้อ",
+//             "detail": "สำหรับคนชอบกินเนื้อวัว ขอนำเสนอเมนูแกงเนื้อ สูตรนี้ใส่เนื้อวัวหั่นชิ้นต้มกับน้ำพริกแกงกะทิจนเปื่อยนุ่ม ใส่มะเขือเปราะกับมะเขือพวง และใบโหระพา",
+//             "image": "https://s359.thaibuffer.com/pagebuilder/66af9d1f-df67-46cd-a102-fa9df11d9fce.jpg",
+//             "step": "เทหางกะทิลงไปในหม้อ ใส่เนื้อวัวลงไปคนให้เข้ากัน เคี่ยวจนเริ่มเปื่อย ยกลงจากเตา เตรียมไว้,ตั้งกระทะใส่หัวกะทิลงไปผัดจนเดือด ตามด้วยพริกแกง ผัดจนกะทิแตกมัน,ใส่ส่วนผสมพริกแกงที่ผัดไว้ลงในหม้อกะทิ คนให้เข้ากัน นำขึ้นตั้งไฟต้มและคนให้เข้ากันจนเดือด จากนั้นเบาไฟลงปรุงรสด้วยน้ำตาลทรายและน้ำปลา,หั่นมะเขือเปราะแบบผ่า 4 ส่วนแล้วใส่ลงไปในหม้อ ตามด้วยมะเขือพวงและพริกชี้ฟ้า คนให้เข้ากันรอจนเดือดอีกครั้ง,ใส่ใบโหระพาลงไปคนต่อสักครู่ ตักใส่ภาชนะ พร้อมเสิร์ฟ",
+//             "type_id": 1
+//         }
+//     ],
 //     "ingredients": [
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "เนื้อไก่",
-//             "qty": "5",
-//             "unit": "น่อง\r\n"
+//             "Ingredient_id": 29,
+//             "qty": "400",
+//             "unit_id": 5
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "พริกแกงมัสมั่น ",
-//             "qty": "200",
-//             "unit": "กรัม"
+//             "Ingredient_id": 48,
+//             "qty": "400",
+//             "unit_id": 17
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "กะทิ",
+//             "Ingredient_id": 12,
 //             "qty": "2",
-//             "unit": "ถ้วย"
+//             "unit_id": 2
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "หางกะทิ",
-//             "qty": "3",
-//             "unit": "ถ้วย"
-//         },
-//         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "หอมหัวใหญ่",
-//             "qty": "3",
-//             "unit": "ถ้วย"
-//         },
-//         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "มันฝรั่ง ",
-//             "qty": "500",
-//             "unit": "กรัม"
-//         },
-//         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "เม็ดมะม่วงหิมพานต์",
+//             "Ingredient_id": 60,
 //             "qty": "200",
-//             "unit": "กรัม"
+//             "unit_id": 17
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "น้ำตาลมะพร้าว",
-//             "qty": "2",
-//             "unit": "ช้อนโต๊ะ"
+//             "Ingredient_id": 3,
+//             "qty": "1+1/2",
+//             "unit_id": 2
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "เกลือป่น",
-//             "qty": "1",
-//             "unit": "หยิบมือ"
+//             "Ingredient_id": 2,
+//             "qty": "3",
+//             "unit_id": 2
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "น้ำปลา",
-//             "qty": "1/2",
-//             "unit": "ช้อนโต๊ะ"
+//             "Ingredient_id": 61,
+//             "qty": "3-5",
+//             "unit_id": 7
 //         },
 //         {
-//             "recipe_id": 1,
-//             "recipe_name": "แกงมัสมั่นไก่",
-//             "Ingredient": "น้ำมะขามเปียก ",
-//             "qty": "4",
-//             "unit": "ช้อนโต๊ะ"
+//             "Ingredient_id": 62,
+//             "qty": "2-3",
+//             "unit_id": 7
+//         },
+//         {
+//             "Ingredient_id": 10,
+//             "qty": "1-2",
+//             "unit_id": 12
 //         }
 //     ]
-
 // }
-router.post('/add',(req,res)=>{
-    let qry_1 = req.body.recipes
+router.post('/add', async (req, res) => {
+    let qry_1 = req.body.data
     let qry_2 = req.body.ingredients
-    for(const obj of qry_2){
-        console.log(obj)
-    }
-
-    res.send("PASS")
-    // dbConn.query(`INSERT INTO recipes SET ?`,qry_1,(error,results,fields)=>{
-    //     if(error) throw error;
-    
-    // })
-  
+    let ingredients = {}
+    await dbConn.query(`INSERT INTO recipes SET ?;`,qry_1, async (error,results,fields)=>{
+        if(error) throw error;
+        const _id = results.insertId
+        ingredients.recipe_id = _id
+        for(obj of qry_2){
+            obj.recipe_id=_id
+            await dbConn.query(`INSERT INTO recipes_ingredient SET ?`,obj,(error,results,fields)=>{
+                if(error) throw error;
+                console.log(obj)
+            })
+        }
+        res.send("Created Data")
+       
+    })
 })
 
 module.exports = router;
