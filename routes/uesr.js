@@ -13,18 +13,18 @@ dbConn.connect()
 
 
 // get อาหารทั้งหมดออกมา
-router.get("/all", (req, res) => {
-    dbConn.query("SELECT * FROM recipes", (error, results, fields) => {
+router.get("/all", async (req, res) => {
+    await dbConn.query("SELECT * FROM recipes", (error, results, fields) => {
         if (error) throw error;
         return res.send(results);
     });
 });
 
-// get อาหารที่ใหม่ล่าสุดออกมาแนะนำตรงหน้าหลัก
+// get อาหารที่ใหม่ล่าสุดออกมาแนะนำตรงหน้าหลัก 6 เมนูที่จะออกมา Ex http://localhost:3000/food/main
 router.get("/main", (req, res) => {
     const _id = req.params.id;
     dbConn.query(
-        `SELECT * FROM recipes ORDER BY created_at ASC`,
+        `SELECT * FROM recipes ORDER BY created_at DESC LIMIT 6`,
         (error, results, fields) => {
             if (error) throw error;
             return res.send(results);
@@ -32,12 +32,12 @@ router.get("/main", (req, res) => {
     );
 });
 
-// get อาหารทั้งหมดออกมาทั้งหมด วิธี วัตถุดิบ น่าจะเวลากดเข้าไปในเมนูนั้นๆ 
+// get อาหารทั้งหมดออกมาทั้งหมด วิธี วัตถุดิบ น่าจะเวลากดเข้าไปในเมนูนั้นๆ Ex http://localhost:3000/food/find/2
 router.get("/find/:id", (req, res) => {
     const _id = req.params.id;
     try {
         dbConn.query(
-            `SELECT * FROM recipes WHERE recipe_id = '${_id}';SELECT recipes.recipe_id,recipes.recipe_name,ingredients.Ingredient,qty,unit.unit
+            `SELECT * FROM recipes WHERE recipe_id = '${_id}';SELECT recipes.recipe_id,ingredients.Ingredient,qty,unit.unit
             FROM recipes_ingredient
             INNER JOIN recipes ON recipes_ingredient.recipe_id=recipes.recipe_id
             INNER JOIN ingredients ON recipes_ingredient.Ingredient_id=ingredients.Ingredient_id
@@ -56,7 +56,7 @@ router.get("/find/:id", (req, res) => {
 
 });
 
-// ค้นหาจากชื่ออาหาร
+// ค้นหาจากชื่ออาหาร Ex http://localhost:3000/food/search/ผัด
 router.get("/search/:text", (req, res) => {
     const textSearch = req.params.text;
     dbConn.query(
@@ -68,7 +68,7 @@ router.get("/search/:text", (req, res) => {
     );
 });
 
-// get ข้อมูลเป็น type เวลากดเข้าไปในประเภทเมนู
+// get ข้อมูลเป็น type เวลากดเข้าไปในประเภทเมนู http://localhost:3000/food/type
 router.get("/type",(req,res)=>{
     dbConn.query(
         `SELECT * FROM type `,
@@ -79,7 +79,7 @@ router.get("/type",(req,res)=>{
     );
 })
 
-// get ข้อมูลเป็นเมนูที่มี type ตามเลข id
+// get ข้อมูลเป็นเมนูที่มี type ตามเลข id Ex http://localhost:3000/food/type/2
 router.get("/type/:id", (req, res) => {
     const _id = req.params.id;
     dbConn.query(
