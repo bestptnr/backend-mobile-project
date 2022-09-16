@@ -37,7 +37,7 @@ router.get("/find/:id", (req, res) => {
     const _id = req.params.id;
     try {
         dbConn.query(
-            `SELECT * FROM recipes WHERE recipe_id = '${_id}';SELECT ingredients.Ingredient_id,qty,unit.unit_id
+            `SELECT * FROM recipes WHERE recipe_id = '${_id}';SELECT recipes.recipe_id,ingredients.Ingredient,qty,unit.unit
             FROM recipes_ingredient
             INNER JOIN recipes ON recipes_ingredient.recipe_id=recipes.recipe_id
             INNER JOIN ingredients ON recipes_ingredient.Ingredient_id=ingredients.Ingredient_id
