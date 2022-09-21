@@ -192,6 +192,9 @@ router.post("/add", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   const _id = req.params.id;
   const newData = req.body;
+  if(!newData){
+    return res.status(404).send("Not Found Data")
+  }
   await dbConn.query(
     `UPDATE recipes SET ? WHERE recipe_id=${_id};`,
     newData.data,
@@ -257,6 +260,9 @@ router.get("/ingredient",(req,res)=>{
 // }
 router.post("/ingredient/add",(req,res)=>{
     const data = req.body
+    if(!data){
+      return res.status(404).send("Data Not Found")
+    }
     dbConn.query(`INSERT INTO ingredients SET ?`,data,(error,results,fields)=>{
         if (error) throw error;
         res.send("Created Ingredient!")
@@ -315,6 +321,9 @@ router.post("/type/add",(req,res)=>{
 router.put("/type/update/:id",(req,res)=>{
     const _id = req.params.id
     const data = req.body
+    if(!data){
+      return res.status(404).send("Data Not Found")
+    }
     dbConn.query(`UPDATE type SET ? WHERE type_id=${_id}`,data,(error,results,fields)=>{
         if (error) throw error;
         res.send("Updated Type!")

@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.get('/',(req,res)=>{
-    return res.send({error:true,message:"Test Student Web API"})
+    return res.send({error:true,message:"Test web API"})
 })
 
 
