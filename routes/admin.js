@@ -246,7 +246,7 @@ router.get("/search/:text", (req, res) => {
 
 
 router.get("/ingredient",(req,res)=>{
-    dbConn.query(`SELECT * FROM ingredients`,(error,results,fields)=>{
+    dbConn.query(`SELECT * FROM ingredients ORDER BY Ingredient ASC `,(error,results,fields)=>{
         if (error) throw error;
         res.send(results)
     })
