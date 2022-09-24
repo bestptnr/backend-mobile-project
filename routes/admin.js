@@ -217,6 +217,7 @@ router.put("/update/:id", async (req, res) => {
 
 router.delete("/delete/:id", async (req, res) => {
     const _id = req.params.id;
+    console.log(_id)
     await dbConn.query(
       `DELETE FROM recipes_ingredient WHERE recipe_id=${_id}`,
       async (error, results, fields) => {
@@ -246,7 +247,7 @@ router.get("/search/:text", (req, res) => {
 
 
 router.get("/ingredient",(req,res)=>{
-    dbConn.query(`SELECT * FROM ingredients ORDER BY Ingredient ASC `,(error,results,fields)=>{
+    dbConn.query(`SELECT * FROM ingredients WHERE soft_delete="N" ORDER BY Ingredient ASC`,(error,results,fields)=>{
         if (error) throw error;
         res.send(results)
     })
@@ -290,11 +291,20 @@ router.delete("/ingredient/delete/:id",(req,res)=>{
     })
 })
 
-
+router.get("/ingredient/search/:text", (req, res) => {
+  const textSearch = req.params.text;
+  dbConn.query(
+      `SELECT * FROM ingredients WHERE Ingredient LIKE '%${textSearch}%'`,
+      (error, results, fields) => {
+          if (error) throw error;
+          return res.send(results);
+      }
+  );
+});
 
 // -----------------------------------------------------------
 router.get("/type",(req,res)=>{
-    dbConn.query(`SELECT * FROM type`,(error,results,fields)=>{
+    dbConn.query(`SELECT * FROM type WHERE soft_delete="N"`,(error,results,fields)=>{
         if (error) throw error;
         res.send(results)
     })
@@ -331,12 +341,22 @@ router.put("/type/update/:id",(req,res)=>{
 })
 router.delete("/type/delete/:id",(req,res)=>{
     const _id = req.params.id
+    console.log(_id)
     dbConn.query(`DELETE FROM type WHERE type_id=${_id}`,(error,results,fields)=>{
         if (error) throw error;
         res.send("Deleted Type!")
     })
 })
-
+router.get("/type/search/:text", (req, res) => {
+  const textSearch = req.params.text;
+  dbConn.query(
+      `SELECT * FROM type WHERE type_name LIKE '%${textSearch}%' and soft_delete="N"`,
+      (error, results, fields) => {
+          if (error) throw error;
+          return res.send(results);
+      }
+  );
+});
 
 
 
