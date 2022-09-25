@@ -285,7 +285,7 @@ router.put("/ingredient/update/:id",(req,res)=>{
 })
 router.delete("/ingredient/delete/:id",(req,res)=>{
     const _id = req.params.id
-    dbConn.query(`DELETE FROM ingredients WHERE Ingredient_id=${_id}`,(error,results,fields)=>{
+    dbConn.query(`UPDATE ingredients SET soft_delete="Y" WHERE Ingredient_id=${_id}`,(error,results,fields)=>{
         if (error) throw error;
         res.send("Deleted Ingredient!")
     })
@@ -303,6 +303,12 @@ router.get("/ingredient/search/:text", (req, res) => {
 });
 
 // -----------------------------------------------------------
+router.get("/unit",(req,res)=>{
+  dbConn.query(`SELECT * FROM unit`,(error,results,fields)=>{
+      if (error) throw error;
+      res.send(results)
+  })
+})
 router.get("/type",(req,res)=>{
     dbConn.query(`SELECT * FROM type WHERE soft_delete="N"`,(error,results,fields)=>{
         if (error) throw error;
@@ -342,7 +348,7 @@ router.put("/type/update/:id",(req,res)=>{
 router.delete("/type/delete/:id",(req,res)=>{
     const _id = req.params.id
     console.log(_id)
-    dbConn.query(`DELETE FROM type WHERE type_id=${_id}`,(error,results,fields)=>{
+    dbConn.query(`UPDATE type SET soft_delete="Y" WHERE type_id=${_id}`,(error,results,fields)=>{
         if (error) throw error;
         res.send("Deleted Type!")
     })

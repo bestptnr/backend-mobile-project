@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 24, 2022 at 08:59 AM
+-- Generation Time: Sep 25, 2022 at 02:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ingredients` (
   `Ingredient_id` int(11) NOT NULL,
   `Ingredient` varchar(255) NOT NULL,
-  `soft_delete` varchar(1) NOT NULL,
+  `soft_delete` varchar(1) NOT NULL DEFAULT 'N',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -350,7 +350,7 @@ INSERT INTO `recipes_ingredient` (`id`, `recipe_id`, `unit_id`, `Ingredient_id`,
 CREATE TABLE `type` (
   `type_id` int(11) NOT NULL,
   `type_name` varchar(255) NOT NULL,
-  `soft_delete` varchar(1) NOT NULL,
+  `soft_delete` varchar(1) NOT NULL DEFAULT 'N',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -476,7 +476,7 @@ ALTER TABLE `recipes_ingredient`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `unit`
