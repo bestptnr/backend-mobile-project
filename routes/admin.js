@@ -78,15 +78,32 @@ router.get("/all", async (req, res) => {
 //     ]
 // }
 router.post("/add", async (req, res) => {
-  let qry_1 = req.body.data;
-  let qry_2 = req.body.ingredients;
+  let arrIngredient=[]
+  let qry_1 = req.body.data.slice(11,-1).split(", ")
+  let qry_2 = req.body.Ingredients
+  let data ={}
+  for(let i of qry_1){
+    let fix = i.split("=")
+    data[fix[0]]=fix[1]
+  }
+  for(let j of qry_2){
+    let ingredient = {}
+    for(let i of j.slice(11,-1).split(", ")){
+      let fix = i.split("=")
+      ingredient[fix[0]]=fix[1]
+    }
+    arrIngredient.push(ingredient)
+
+   
+  }
+  console.log(arrIngredient)
   await dbConn.query(
     `INSERT INTO recipes SET ?;`,
-    qry_1,
+    data,
     async (error, results, fields) => {
       if (error) throw error;
       const _id = results.insertId;
-      for (obj of qry_2) {
+      for (obj of arrIngredient) {
         obj.recipe_id = _id;
         await dbConn.query(
           `INSERT INTO recipes_ingredient SET ?`,
@@ -323,6 +340,7 @@ router.get("/type",(req,res)=>{
 
 router.post("/type/add",(req,res)=>{
     const data = req.body
+    console.log(req.body)
     dbConn.query(`INSERT INTO type SET ?`,data,(error,results,fields)=>{
         if (error) throw error;
         res.send("Created Type!")
