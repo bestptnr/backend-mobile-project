@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar Example For week 9</title>
+
+    <style>
+
+      * {
+        margin: 0;
+      }
+      nav {
+        padding: 10px 20px;
+        background-color: rgb(52, 86, 117);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav > div > div{
+        padding: 0.5rem 1rem;
+      }
+      nav > div{
+        display: flex;
+        width: 80%;
+        justify-content: center;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+      }
+      .menu {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .menu a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        padding: 10px 1.5rem;
+      }
+      .menu li:hover {
+        background-color: rgb(41, 71, 98);
+      }
+      .menu li {
+        position: relative;
+      }
+      .submenu-1 {
+        position: absolute;
+        background-color: #e6e6e6;
+        width: max-content;
+        display: none;
+      }
+ 
+      .menu li:hover > .submenu-1 {
+        display: block;
+      }
+      .lv-2::after {
+        position: relative;
+        left: 20%;
+        content: "\25BE";
+      }
+    
+      .submenu-1 a{
+        color: black;
+      }
+      .submenu-1 a:hover {
+        color: white;
+      }
+      .list:hover > a {
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+        <div>
+            <img src="" alt="1">
+            <ul class="menu">
+                <li class="t"><a href="">Home</a></li>
+                <li><a href="">Products</a></li>
+                <li>
+                  <a href="" class="lv-2">Products</a>
+                  <ul class="submenu-1">
+                    <li><a href="">iPhone</a></li>
+                    <li><a href="">Sumsung</a></li>
+                    <li><a href="">Oppo</a></li>
+                    
+                  </ul>
+                </li>
+              </ul>
+        </div>
+        <div>
+            <div>
+                icon
+            </div>
+            <div>
+                icon
+            </div>
+            <div>
+                Signin
+            </div>
+        </div>
+      
+    </nav>
+  </body>
+</html>

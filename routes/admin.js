@@ -273,12 +273,23 @@ router.get('/ingredient/max',async (req,res)=>{
     }
   )
 })
+router.get("/ingredient/size",async (req,res)=>{
+  dbConn.query(
+    `SELECT MAX(Ingredient_id) as total FROM ingredients`,async(error,results)=>{
+        if (error) throw error;
+        res.send(results[0])
+        
+      
+    }
+  )
+})
 router.put("/update/ingredient/:id",async (req,res)=>{
   const _id = req.params.id
   const lastrow=0
+  console.log(_id)
   dbConn.query(
-    `SELECT MAX(Ingredient_id) FROM ingredients`,async(error,results)=>{
-       if(_id<results){
+    `SELECT MAX(Ingredient_id) as total  FROM ingredients`,async(error,results)=>{
+       if(_id==1){
         await dbConn.query(
           `INSERT INTO recipes_ingredient SET ? `,req.body, (error, results, fields) => {
             if (error) throw error;
