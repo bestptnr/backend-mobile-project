@@ -286,7 +286,8 @@ router.get("/ingredient/size",async (req,res)=>{
 router.put("/update/ingredient/:id",async (req,res)=>{
   const _id = req.params.id
   const lastrow=0
-  console.log(_id)
+  console.log(_id,req.body)
+
   dbConn.query(
     `SELECT MAX(Ingredient_id) as total  FROM ingredients`,async(error,results)=>{
        if(_id==1){
@@ -301,13 +302,15 @@ router.put("/update/ingredient/:id",async (req,res)=>{
         await dbConn.query(
           `UPDATE recipes_ingredient SET ? WHERE id=${_id}`,req.body, (error, results, fields) => {
             if (error) throw error;
+        
             res.send(results)
+
           }
         )
        }
     }
+  
   )
-
 })
 router.delete("/delete/recipeingredient/:id",async (req,res)=>{
   const _id = req.params.id
@@ -465,6 +468,7 @@ router.post("/type/add", (req, res) => {
 router.put("/type/update/:id", (req, res) => {
   const _id = req.params.id;
   const data = req.body;
+  console.log(data,_id)
   if (!data) {
     return res.status(404).send("Data Not Found");
   }
