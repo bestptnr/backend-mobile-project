@@ -35,6 +35,7 @@ router.get("/food/:id", async (req, res) => {
           WHERE recipes.recipe_id=${_id}
           ORDER BY ingredients.Ingredient DESC`,
         (error, results, fields) => {
+         
           res.send({data:recipe,ingredient:results})
         }
       );
